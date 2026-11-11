@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Affifa Taskeen · Geospatial Data & GeoAI Engineer</title>
+  <meta name="description" content="Geospatial Data Engineer and GeoAI Engineer: Earth observation pipelines, OGC data serving and LLMs on spatial data.">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top">Affifa Taskeen</a>
+    <nav>
+      <a href="#map">Map</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">Geospatial Data Engineer · GeoAI Engineer</p>
+      <h1>I turn satellite and spatial data into<br><span class="accent">analysis-ready datasets</span>, serve them through OGC services, and put AI on top.</h1>
+      <p class="lede">6+ years in Earth observation and geospatial engineering · MPhil Remote Sensing &amp; GIS (Gold Medalist) · open to relocation to Germany / Europe</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/iamaffifa" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/affifataskeen" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section id="map" class="section">
+      <div class="section-head">
+        <h2>Project map</h2>
+        <p>Click a point to open the project. Filter by domain.</p>
+      </div>
+      <div class="chips" id="domain-chips"></div>
+      <div class="map-wrap">
+        <div id="mapview" role="region" aria-label="Map of project locations"></div>
+        <aside class="map-card" id="map-card" hidden></aside>
+      </div>
+    </section>
+
+    <section id="pipeline" class="section">
+      <div class="section-head">
+        <h2>How I build</h2>
+        <p>Click a stage to see the tools I use there and the projects that touch it.</p>
+      </div>
+      <ol class="pipeline" id="pipeline-stages"></ol>
+      <div class="stage-detail" id="stage-detail"></div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p id="project-filter-note">Showing all projects.</p>
+      </div>
+      <div class="grid" id="project-grid"></div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="section-head"><h2>Experience</h2></div>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Most of my production work lives in private client repositories. Happy to walk through any architecture on a call.</p>
+    <p><a href="https://github.com/iamaffifa">github.com/iamaffifa</a> · <a href="https://linkedin.com/in/affifataskeen">linkedin.com/in/affifataskeen</a></p>
+  </footer>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="data.js?v=4"></script>
+  <script src="app.js?v=4"></script>
+</body>
+</html>
