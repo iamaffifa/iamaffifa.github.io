@@ -1,49 +1,100 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Affifa Taskeen · Geospatial Data & GeoAI Engineer</title>
   <meta name="description" content="Geospatial Data Engineer and GeoAI Engineer: Earth observation pipelines, OGC data serving and LLMs on spatial data.">
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <script>
+    // Apply the saved theme before first paint so the page never flashes the wrong colours.
+    try { const t = localStorage.getItem("theme"); if (t === "dark" || t === "light") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.0/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#top">Affifa Taskeen</a>
+    <a class="brand" href="#top"><span class="brand-dot"></span>Affifa Taskeen</a>
     <nav>
+      <a href="#featured">Demo</a>
       <a href="#map">Map</a>
       <a href="#pipeline">Pipeline</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
     </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+    </button>
   </header>
 
   <main id="top">
     <section class="hero">
-      <p class="eyebrow">Geospatial Data Engineer · GeoAI Engineer</p>
-      <h1>I turn satellite and spatial data into<br><span class="accent">analysis-ready datasets</span>, serve them through OGC services, and put AI on top.</h1>
-      <p class="lede">6+ years in Earth observation and geospatial engineering · MPhil Remote Sensing &amp; GIS (Gold Medalist) · open to relocation to Germany / Europe</p>
-      <div class="cta">
-        <a class="btn primary" href="https://github.com/iamaffifa" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="https://linkedin.com/in/affifataskeen" target="_blank" rel="noopener">LinkedIn</a>
+      <svg class="topo" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke-width="1.2">
+          <path d="M-50 420 C 150 360 260 470 420 410 S 700 300 860 360 S 1100 470 1260 400"/>
+          <path d="M-50 380 C 160 320 270 430 430 370 S 700 260 870 320 S 1110 430 1260 360"/>
+          <path d="M-50 340 C 170 280 280 390 440 330 S 710 220 880 280 S 1120 390 1260 320"/>
+          <path d="M-50 300 C 180 240 290 350 450 290 S 720 180 890 240 S 1130 350 1260 280"/>
+          <path d="M-50 260 C 190 200 300 310 460 250 S 730 140 900 200 S 1140 310 1260 240"/>
+          <path d="M-50 220 C 200 160 310 270 470 210 S 740 100 910 160 S 1150 270 1260 200"/>
+          <path d="M-50 180 C 210 120 320 230 480 170 S 750 60 920 120 S 1160 230 1260 160"/>
+          <path d="M-50 460 C 140 400 250 510 410 450 S 690 340 850 400 S 1090 510 1260 440"/>
+          <path d="M-50 500 C 130 440 240 550 400 490 S 680 380 840 440 S 1080 550 1260 480"/>
+        </g>
+      </svg>
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Geospatial Data Engineer · GeoAI Engineer</p>
+          <h1>I turn satellite and spatial data into <span class="accent">analysis-ready datasets</span>, serve them through OGC services, and put AI on top.</h1>
+          <p class="lede">6+ years in Earth observation and geospatial engineering · MPhil Remote Sensing &amp; GIS (Gold Medalist) · open to relocation to Germany / Europe</p>
+          <div class="cta">
+            <a class="btn primary" href="#featured">Watch the demo</a>
+            <a class="btn" href="https://github.com/iamaffifa" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://linkedin.com/in/affifataskeen" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <div class="hero-photo reveal">
+          <div class="orbit"><img src="https://github.com/iamaffifa.png?size=320" alt="Affifa Taskeen" width="220" height="220"></div>
+          <span class="badge b1">🛰️ Earth observation</span>
+          <span class="badge b2">🗺️ OGC services</span>
+          <span class="badge b3">🤖 GeoAI</span>
+        </div>
       </div>
       <div class="stats" id="stats"></div>
     </section>
 
-    <section id="map" class="section">
+    <section id="featured" class="section reveal">
+      <div class="featured">
+        <div class="featured-video">
+          <video src="videos/flood-susceptibility-dashboard.mp4" controls preload="metadata" playsinline></video>
+        </div>
+        <div class="featured-copy">
+          <p class="eyebrow">Featured demo</p>
+          <h2>Flood intelligence you can talk to</h2>
+          <p>During Pakistan's 2022 floods, district officials had no fast way to see which areas and buildings were underwater. This dashboard maps the flood and the risk zones, and lets anyone ask a question in plain English, such as <em>“which buildings are within 500 m of the flood?”</em>, and see the answer on the map.</p>
+          <ul class="facts">
+            <li><strong>670,000+</strong> buildings</li>
+            <li><strong>12,500+ km²</strong> district</li>
+            <li><strong>100%</strong> offline AI</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="map" class="section reveal">
       <div class="section-head">
         <h2>Project map</h2>
-        <p>Click a point to open the project. Filter by domain.</p>
+        <p>Drag to spin the globe. Click a point to open the project, or filter by domain.</p>
       </div>
       <div class="chips" id="domain-chips"></div>
       <div class="map-wrap">
-        <div id="mapview" role="region" aria-label="Map of project locations"></div>
+        <div id="mapview" role="region" aria-label="Globe of project locations"></div>
         <aside class="map-card" id="map-card" hidden></aside>
       </div>
     </section>
 
-    <section id="pipeline" class="section">
+    <section id="pipeline" class="section reveal">
       <div class="section-head">
         <h2>How I build</h2>
         <p>Click a stage to see the tools I use there and the projects that touch it.</p>
@@ -53,14 +104,14 @@
     </section>
 
     <section id="projects" class="section">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Projects</h2>
         <p id="project-filter-note">Showing all projects.</p>
       </div>
       <div class="grid" id="project-grid"></div>
     </section>
 
-    <section id="experience" class="section">
+    <section id="experience" class="section reveal">
       <div class="section-head"><h2>Experience</h2></div>
       <ol class="timeline" id="timeline"></ol>
     </section>
@@ -71,8 +122,8 @@
     <p><a href="https://github.com/iamaffifa">github.com/iamaffifa</a> · <a href="https://linkedin.com/in/affifataskeen">linkedin.com/in/affifataskeen</a></p>
   </footer>
 
-  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <script src="data.js?v=4"></script>
-  <script src="app.js?v=4"></script>
+  <script src="https://unpkg.com/maplibre-gl@5.6.0/dist/maplibre-gl.js"></script>
+  <script src="data.js?v=6"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

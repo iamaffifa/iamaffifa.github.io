@@ -129,12 +129,31 @@
     if (key === "skill") $("#projects").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
   };
 
-  // --- Map ---
+  // --- Theme ---
+  const root = document.documentElement;
+  const mapStyle = () => `https://tiles.openfreemap.org/styles/${root.dataset.theme === "dark" ? "dark" : "positron"}`;
+  const themeBtn = $("#theme-toggle");
+  const syncThemeButton = () => themeBtn.setAttribute("aria-label", `Switch to ${root.dataset.theme === "dark" ? "light" : "dark"} theme`);
+  syncThemeButton();
+  themeBtn.addEventListener("click", () => {
+    root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+    syncThemeButton();
+    map.setStyle(mapStyle());
+  });
+
+  // --- Scroll reveal ---
+  const revealer = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("in"); revealer.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((n) => revealer.observe(n));
+
+  // --- Map (globe) ---
   const map = new maplibregl.Map({
     container: "mapview",
-    style: "https://tiles.openfreemap.org/styles/positron",
-    center: [40, 25],
-    zoom: 1.6,
+    style: mapStyle(),
+    center: [40, 22],
+    zoom: window.innerWidth < 600 ? 1.2 : 1.9,
     attributionControl: { compact: true },
     cooperativeGestures: true,
   });
@@ -149,20 +168,34 @@
     })),
   });
 
-  map.on("load", () => {
+  // A theme switch replaces the whole style, so the globe and project layers are re-added on every style load.
+  map.on("style.load", () => {
+    map.setProjection({ type: "globe" });
     map.addSource("projects", { type: "geojson", data: geojson() });
     map.addLayer({ id: "halo", type: "circle", source: "projects",
-      paint: { "circle-radius": 16, "circle-color": "#f28c38", "circle-opacity": 0.25 } });
+      paint: { "circle-radius": 16, "circle-color": "#f28c38", "circle-opacity": 0.28, "circle-pitch-alignment": "map" } });
     map.addLayer({ id: "dots", type: "circle", source: "projects",
-      paint: { "circle-radius": 7, "circle-color": "#f28c38", "circle-stroke-width": 2, "circle-stroke-color": "#ffffff" } });
-    map.on("click", "dots", (e) => openCard(e.features[0].properties.id));
-    map.on("mouseenter", "dots", () => (map.getCanvas().style.cursor = "pointer"));
-    map.on("mouseleave", "dots", () => (map.getCanvas().style.cursor = ""));
+      paint: { "circle-radius": 7, "circle-color": "#f28c38", "circle-stroke-width": 2, "circle-stroke-color": "#ffffff", "circle-pitch-alignment": "map" } });
   });
+  map.on("click", "dots", (e) => openCard(e.features[0].properties.id));
+  map.on("mouseenter", "dots", () => (map.getCanvas().style.cursor = "pointer"));
+  map.on("mouseleave", "dots", () => (map.getCanvas().style.cursor = ""));
+
+  // Slow spin until the visitor touches the globe.
+  let spinning = !reduceMotion;
+  const spin = () => {
+    if (!spinning || map.getZoom() > 3) return;
+    const c = map.getCenter();
+    map.easeTo({ center: [c.lng + 12, c.lat], duration: 3000, easing: (t) => t });
+  };
+  map.on("moveend", spin);
+  map.on("load", spin);
+  ["mousedown", "touchstart", "wheel"].forEach((ev) => map.on(ev, () => { spinning = false; }));
 
   const mapCard = $("#map-card");
   const openCard = (id) => {
     const p = projects.find((x) => x.id === id);
+    spinning = false;
     mapCard.hidden = false;
     mapCard.replaceChildren(
       el("button", { class: "close", type: "button", "aria-label": "Close", onclick: () => (mapCard.hidden = true) }, "×"),
