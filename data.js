@@ -153,7 +153,7 @@ window.PORTFOLIO = {
   ],
 
   experience: [
-    { role: "Senior Geospatial Data Engineer", org: "Infotech Groups", dates: "2026 – present", note: "Geospatial data pipelines and AI query layers; leading a team of 7 on an on-premise text-to-SQL assistant." },
+    { role: "Senior Geospatial Data Engineer", org: "Confidential", dates: "2026 – present", note: "Geospatial data pipelines and AI query layers; leading a team of 7 on an on-premise text-to-SQL assistant." },
     { role: "GeoAI and GIS Developer", org: "FAAB AI", dates: "2023 – 2026", note: "LLM-powered geospatial portals and RAG systems for clients in Sweden, the US and Malaysia." },
     { role: "Senior GIS Developer", org: "Spatial Stack", dates: "2021 – 2023", note: "GeoServer-backed web GIS portals and EO ingestion pipelines." },
     { role: "ML / GIS Developer", org: "The Urban Unit", dates: "2020 – 2021", note: "CNN models on Sentinel-2 and drone imagery for agriculture." },
