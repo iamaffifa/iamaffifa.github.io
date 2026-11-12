@@ -28,10 +28,9 @@ window.PORTFOLIO = {
       skills: ["Sentinel-2", "Sentinel-1 SAR", "PostGIS", "Kafka", "H3 / S2", "Local LLM"],
       location: { name: "Evros (Dadia), Greece", coords: [26.0, 41.0] },
       video: {
-        src: "https://iamaffifa.github.io/wildfire-geoai/video/wildfire-geoai-demo.mp4",
-        poster: "https://iamaffifa.github.io/wildfire-geoai/img/thumbnail_1920x1080.jpg",
+        src: "videos/wildfire-geoai-demo.mp4",
+        poster: "videos/wildfire-geoai-demo.jpg",
       },
-      link: { label: "Project page & code on GitHub", url: "https://iamaffifa.github.io/wildfire-geoai/" },
     },
     {
       id: "flood-dashboard",
