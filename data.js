@@ -18,6 +18,22 @@ window.PORTFOLIO = {
   // video: { youtube: "VIDEO_ID" } or { src: "videos/name.mp4", poster: "videos/name.jpg" } or { link: "https://..." }.
   projects: [
     {
+      id: "wildfire-geoai",
+      title: "Wildfire Intelligence: From Satellites to Answers",
+      problem: "After a major wildfire, agencies need to know what burned, how badly, and what was hit, but the answers are scattered across separate satellite products and maps.",
+      outcome: "A reproducible pipeline and interactive map for the 2023 Evros wildfire in Greece: burn severity, impact on buildings, roads and protected nature, validated against the EU's official burnt-area map, with plain-English questions answered on the map.",
+      metric: "96,496 ha mapped · 0.93 agreement with EU map",
+      domains: ["Earth observation", "GeoAI", "Data engineering"],
+      stages: ["sources", "ingest", "process", "store", "ai", "apps"],
+      skills: ["Sentinel-2", "Sentinel-1 SAR", "PostGIS", "Kafka", "H3 / S2", "Local LLM"],
+      location: { name: "Evros (Dadia), Greece", coords: [26.0, 41.0] },
+      video: {
+        src: "https://iamaffifa.github.io/wildfire-geoai/video/wildfire-geoai-demo.mp4",
+        poster: "https://iamaffifa.github.io/wildfire-geoai/img/thumbnail_1920x1080.jpg",
+      },
+      link: { label: "Project page & code on GitHub", url: "https://iamaffifa.github.io/wildfire-geoai/" },
+    },
+    {
       id: "flood-dashboard",
       title: "Flood Susceptibility Dashboard with a Local AI Assistant",
       problem: "During the 2022 Pakistan floods, district officials had no quick way to see which areas and buildings were underwater or at risk.",
