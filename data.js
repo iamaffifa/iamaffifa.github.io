@@ -29,7 +29,7 @@ window.PORTFOLIO = {
       location: { name: "Evros (Dadia), Greece", coords: [26.0, 41.0] },
       video: {
         src: "videos/wildfire-geoai-demo.mp4",
-        poster: "videos/wildfire-geoai-demo.jpg?v=2",
+        poster: "videos/wildfire-geoai-demo.jpg?v=3",
       },
     },
     {
